@@ -16,9 +16,7 @@ class PrestartSQL {
 
   private async _createDBIfNotExists(): Promise<void> {
     try {
-      await this._client.query(
-        `CREATE DATABASE IF NOT EXISTS ${this._dbConfig.database}`,
-      );
+      await this._client.query(`CREATE DATABASE IF NOT EXISTS ${this._dbConfig.database}`);
 
       PrestartSQL.logger.log('Project DB already exists.');
     } catch (e) {
@@ -39,9 +37,7 @@ class PrestartSQL {
       await this._client.initialize();
       PrestartSQL.logger.log('Connected');
     } catch (e) {
-      PrestartSQL.logger.error(
-        `CONNECTION ERROR: ${e}`.replace(' error: ', ' '),
-      );
+      PrestartSQL.logger.error(`CONNECTION ERROR: ${e}`.replace(' error: ', ' '));
       await this._disconnect(1);
     }
   }
