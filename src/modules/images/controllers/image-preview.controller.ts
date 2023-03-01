@@ -1,22 +1,8 @@
-import {
-  Body,
-  Delete,
-  Get,
-  HttpStatus,
-  Param,
-  ParseUUIDPipe,
-  Patch,
-  Post,
-  Query,
-} from '@nestjs/common';
+import { Body, Delete, Get, HttpStatus, Param, ParseUUIDPipe, Patch, Post, Query } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { ImagesController as Controller } from '../decorators';
-import {
-  ApiGetImagePreviewModel,
-  ChangeOrderDto,
-  UploadImageDto,
-} from '../models';
+import { ApiGetImagePreviewModel, ChangeOrderDto, UploadImageDto } from '../models';
 import { ImagePreviewService } from '../services';
 
 @Controller('preview')
@@ -39,9 +25,7 @@ export class ImagePreviewController {
     type: ApiGetImagePreviewModel,
     status: HttpStatus.OK,
   })
-  getPreviewImageById(
-    @Param('id', ParseUUIDPipe) id: string,
-  ): Promise<ApiGetImagePreviewModel> {
+  getPreviewImageById(@Param('id', ParseUUIDPipe) id: string): Promise<ApiGetImagePreviewModel> {
     return this._imagePreviewService.getPreviewImageById(id);
   }
 
@@ -53,10 +37,7 @@ export class ImagePreviewController {
 
   @Patch()
   @ApiResponse({ status: HttpStatus.OK })
-  changeOrder(
-    @Query('imagePreviewId', ParseUUIDPipe) id: string,
-    @Body() { order }: ChangeOrderDto,
-  ) {
+  changeOrder(@Query('imagePreviewId', ParseUUIDPipe) id: string, @Body() { order }: ChangeOrderDto) {
     return this._imagePreviewService.changeOrder(id, order);
   }
 
