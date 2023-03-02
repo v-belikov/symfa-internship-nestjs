@@ -1,11 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, TableInheritance } from 'typeorm';
 
 import { ImageParentEntity } from '@entities/images/image.entity';
 
 import { BaseEntity } from '../common';
 
 @Entity('products')
-export abstract class ProductEntity extends BaseEntity {
+export class ProductEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
@@ -29,9 +29,6 @@ export abstract class ProductEntity extends BaseEntity {
 
   @Column({ type: 'float', nullable: false })
   price: number;
-
-  @Column({ type: 'bigint', nullable: false })
-  sku: number;
 
   @Column({ type: 'varchar', nullable: false })
   style: string;
