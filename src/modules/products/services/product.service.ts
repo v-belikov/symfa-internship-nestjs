@@ -2,22 +2,31 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { ProductParentEntity } from '@entities/products/product.entity';
+// import { ImagePreview } from '@entities/images';
+import { ProductEntity } from '@entities/products';
 
-import { ApiGetProductModel, UploadProductDto } from '../models';
+import { ApiGetProductModel } from '../models';
 
 @Injectable()
 export class ProductParentEntityService {
   constructor(
-    @InjectRepository(ProductParentEntity)
-    private readonly _productsRepository: Repository<ProductParentEntity>,
+    @InjectRepository(ProductEntity)
+    private readonly _productsRepository: Repository<ProductEntity>,
   ) {}
 
   async getAll(): Promise<ApiGetProductModel[]> {
     return this._productsRepository.find({
       order: {
-        path: 'asc',
-        order: 'asc',
+        title: 'asc',
+        price: 'asc',
+        currencyFormat: 'asc',
+        availableSizes: 'asc',
+        currencyId: 'asc',
+        description: 'asc',
+        installments: 'asc',
+        isFreeShipping: 'asc',
+        style: 'asc',
+        // images: ImagePreview[];
       },
     });
   }
@@ -30,21 +39,6 @@ export class ProductParentEntityService {
     }
 
     return product;
-  }
-
-  async uploadProduct({ path, order }: UploadProductDto): Promise<string> {
-    const product = this._productsRepository.create({
-      order,
-      path,
-    });
-
-    const uploadedProduct = await this._productsRepository.save(product);
-
-    return uploadedProduct.id;
-  }
-
-  async changeOrder(id: string, order: number): Promise<void> {
-    await this._productsRepository.update({ id }, { order });
   }
 
   async deleteProduct(id: string): Promise<void> {

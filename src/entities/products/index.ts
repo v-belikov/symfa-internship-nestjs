@@ -1,3 +1,5 @@
-import { ProductParentEntity } from './product.entity';
+import { ProductEntity } from '@entities/products';
 
-export const PRODUCT_ENTITIES = [ProductParentEntity];
+export * from './product.entity';
+
+export const PRODUCT_ENTITIES = [ProductEntity];

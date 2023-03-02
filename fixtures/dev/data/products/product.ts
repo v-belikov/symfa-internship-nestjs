@@ -1,7 +1,8 @@
-import { ProductParentEntity } from '@entities/products/product.entity';
-import { ProductType } from '@models/enum';
+import { DeepPartial } from 'typeorm';
 
-export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
+import { ProductEntity } from '@entities/products';
+
+export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   {
     availableSizes: ['X', 'L', 'XL', 'XXL'],
     currencyFormat: '$',
@@ -10,10 +11,9 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 9,
     isFreeShipping: true,
     price: 10.9,
-    sku: 8552515751438644,
     style: 'White T-shirt',
     title: 'Cropped Stay Groovy off white',
-    productType: ProductType.Product,
+    images: [{ id: '48866931-544d-4f54-9825-1fdee26d4225' }],
   },
   {
     availableSizes: ['X', 'ML', 'L'],
@@ -23,10 +23,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 3,
     isFreeShipping: true,
     price: 13.25,
-    sku: 39876704341265610,
     style: 'Wine',
     title: 'Basic Cactus White T-shirt',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['XL'],
@@ -36,10 +34,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 12,
     isFreeShipping: false,
     price: 25.9,
-    sku: 9197907543445676,
     style: 'Tony Hawk',
     title: 'Skater Black Sweatshirt',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['M', 'ML'],
@@ -49,10 +45,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 5,
     isFreeShipping: true,
     price: 29.45,
-    sku: 51498472915966370,
     style: 'Tule',
     title: 'Black Tule Oversized',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['S', 'XS'],
@@ -62,10 +56,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 9,
     isFreeShipping: true,
     price: 10.9,
-    sku: 12064273040195392,
     style: 'Really Cool T-shirt',
     title: 'Black Batman T-shirt',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['X', 'L', 'XL'],
@@ -75,10 +67,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 3,
     isFreeShipping: true,
     price: 9,
-    sku: 10686354557628304,
     style: 'Mark Zuck have 365 of this one',
     title: 'Blue T-Shirt',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['X', 'L', 'XL', 'XXL'],
@@ -88,10 +78,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 5,
     isFreeShipping: true,
     price: 14,
-    sku: 11033926921508488,
     style: '',
     title: 'Loose Black T-shirt',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['X', 'L', 'XL', 'XXL'],
@@ -101,10 +89,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 9,
     isFreeShipping: true,
     price: 10.9,
-    sku: 18644119330491310,
     style: 'White T-shirt',
     title: 'Ringer Hall Pass',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['X', 'L'],
@@ -114,10 +100,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 7,
     isFreeShipping: true,
     price: 14.9,
-    sku: 11854078013954528,
     style: 'You will like this one',
     title: 'Grey T-shirt',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['X', 'L'],
@@ -127,10 +111,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 7,
     isFreeShipping: true,
     price: 14.9,
-    sku: 876661122392077,
     style: 'Adidas originals',
     title: 'Black T-shirt with white stripes',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['X', 'L', 'XL'],
@@ -140,10 +122,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 9,
     isFreeShipping: false,
     price: 10.9,
-    sku: 10547961582846888,
     style: 'Cowabunga!',
     title: 'Turtles Ninja T-shirt',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['XL', 'XXL'],
@@ -153,10 +133,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 0,
     isFreeShipping: true,
     price: 49.9,
-    sku: 6090484789343891,
     style: 'When you wish well',
     title: 'Slim black T-shirt',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['S'],
@@ -166,10 +144,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 4,
     isFreeShipping: true,
     price: 22.5,
-    sku: 18532669286405344,
     style: 'Very comfy',
     title: 'Blue Sweatshirt',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['XL'],
@@ -179,10 +155,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 4,
     isFreeShipping: false,
     price: 18.7,
-    sku: 5619496040738316,
     style: 'Girl the future is all your',
     title: 'White T-shirt Gucci',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['L', 'XL'],
@@ -192,10 +166,8 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 5,
     isFreeShipping: true,
     price: 134.9,
-    sku: 11600983276356164,
     style: '',
     title: 'Tropical Wine T-shirt',
-    productType: ProductType.Product,
   },
   {
     availableSizes: ['L', 'XL'],
@@ -205,9 +177,7 @@ export const PRODUCT_FIXTURES: Partial<ProductParentEntity>[] = [
     installments: 9,
     isFreeShipping: true,
     price: 49,
-    sku: 27250082398145996,
     style: '',
     title: 'Marine Blue T-shirt',
-    productType: ProductType.Product,
   },
 ];
