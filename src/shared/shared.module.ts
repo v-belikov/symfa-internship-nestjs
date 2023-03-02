@@ -8,10 +8,7 @@ import { ENTITIES } from '@entities/index';
 @Module({})
 export class SharedModule {
   static share(): DynamicModule {
-    const sharedModules = [
-      TypeOrmModule.forRoot(Config.get.typeORMOptions),
-      TypeOrmModule.forFeature(ENTITIES),
-    ];
+    const sharedModules = [TypeOrmModule.forRoot(Config.get.typeORMOptions), TypeOrmModule.forFeature(ENTITIES)];
 
     return {
       module: SharedModule,
