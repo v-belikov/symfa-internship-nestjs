@@ -10,16 +10,20 @@ if (!existsSync(folder)) {
   mkdirSync(folder);
 }
 
-const migrations = readdirSync(folder).reduce((acc: FunctionConstructor[], migration: string) => {
-  acc.push(
-    ...Object.values(
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      require(join(folder, migration)) as FunctionConstructor[],
-    ),
-  );
 
-  return acc;
-}, []);
+const migrations = readdirSync(folder).reduce(
+  (acc: FunctionConstructor[], migration: string) => {
+    acc.push(
+      ...Object.values(
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        require(join(folder, migration)) as FunctionConstructor[],
+      ),
+    );
+
+    return acc;
+  },
+  [],
+);
 
 export default new DataSource({
   ...Config.get.typeORMOptions,
