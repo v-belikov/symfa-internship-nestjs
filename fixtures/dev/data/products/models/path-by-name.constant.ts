@@ -1,1 +1,1 @@
-export const pathByName = (name: string) => `products/product/${name}`;
+export const pathByName = (name: string) => `products/${name}`;

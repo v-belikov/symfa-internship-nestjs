@@ -1,6 +1,6 @@
 import { DeepPartial } from 'typeorm';
 
-import { ProductEntity } from '@entities/products/product.entity';
+import { ProductEntity } from '@entities/products';
 import { EnvironmentType } from '@models/enum';
 
 // eslint-disable-next-line no-restricted-imports

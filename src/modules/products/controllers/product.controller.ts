@@ -5,8 +5,8 @@ import { ProductsController as Controller } from '../decorators';
 import { ApiGetProductModel } from '../models';
 import { ProductParentEntityService } from '../services';
 
-@Controller('preview')
-@ApiTags('images/preview')
+@Controller('products')
+@ApiTags('products')
 export class ProductController {
   constructor(private readonly _productService: ProductParentEntityService) {}
 

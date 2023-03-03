@@ -1,4 +1,4 @@
-import { ProductEntity } from '@entities/products/product.entity';
+import { ProductEntity } from '@entities/products';
 import { ProductType } from '@models/enum';
 
 import { pathByName } from './path-by-name.constant';
