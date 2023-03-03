@@ -1,3 +1,3 @@
-import { ProductLoader } from './product-loader';
+export { ProductLoader } from './product-loader';
 
-export const PRODUCT_LOADER = [ProductLoader];
+// export const PRODUCT_LOADER = [ProductLoader];

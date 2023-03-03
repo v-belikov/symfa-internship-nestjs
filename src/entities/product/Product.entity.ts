@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 
-import { Size } from '@models/enum/sizes';
+import { Size } from '@models/enum';
 
 import { BaseEntity } from '../common';
 import { ImageCart } from '../images';

@@ -1,7 +1,7 @@
 import { DeepPartial } from 'typeorm';
 
 import { Product } from '@entities/product';
-import { Size } from '@models/enum/sizes';
+import { Size } from '@models/enum';
 
 export const PRODUCT_FIXTURES: DeepPartial<Product>[] = [
   {

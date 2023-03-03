@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 import { ImageCart, ImagePreview } from '@entities/images';
-import { Size } from '@models/enum/sizes';
+import { Size } from '@models/enum';
 
 export class ApiGetProductsPreviewModel {
   @ApiProperty()

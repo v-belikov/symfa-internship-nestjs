@@ -1,8 +1,8 @@
-import { Get, HttpStatus } from '@nestjs/common';
+import { Get, HttpStatus, Query } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { Products_Controller as Controller } from '../decorators';
-import { ApiGetProductsPreviewModel } from '../models';
+import { ApiGetProductsPreviewModel, ProductsDto } from '../models';
 import { ProductsService } from '../services';
 
 @Controller('')
@@ -16,7 +16,7 @@ export class ProductsController {
     status: HttpStatus.OK,
     isArray: true,
   })
-  getProducts() {
-    return this._productsService.getProducts();
+  getProducts(@Query() filterParams: ProductsDto) {
+    return this._productsService.getProducts(filterParams.sizes);
   }
 }
