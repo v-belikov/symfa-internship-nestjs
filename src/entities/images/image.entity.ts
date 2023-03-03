@@ -1,6 +1,5 @@
-import { Column, Entity, ManyToOne, TableInheritance, Unique } from 'typeorm';
+import { Column, Entity, TableInheritance, Unique } from 'typeorm';
 
-import { ProductEntity } from '@entities/products';
 import { ImageType } from '@models/enum';
 
 import { BaseEntity } from '../common';
@@ -20,7 +19,4 @@ export abstract class ImageParentEntity extends BaseEntity {
     nullable: false,
   })
   path: string;
-
-  @ManyToOne(() => ProductEntity, (product: ProductEntity) => product.images)
-  product: ProductEntity;
 }

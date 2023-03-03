@@ -1,6 +1,7 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn, TableInheritance } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { ImageParentEntity } from '@entities/images/image.entity';
+import { ImageCart, ImagePreview } from '@entities/images';
+import { Size } from '@models/enum';
 
 import { BaseEntity } from '../common';
 
@@ -9,8 +10,11 @@ export class ProductEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
+  // @Column({ type: 'enum', name: 'size', enum: Size, select: false })
+  // availableSizes: Size;
+
   @Column('json')
-  availableSizes: string[];
+  availableSizes: Size[];
 
   @Column({ type: 'varchar', length: 1, nullable: false })
   currencyFormat: string;
@@ -36,6 +40,9 @@ export class ProductEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: false })
   title: string;
 
-  @OneToMany(() => ImageParentEntity, (image: ImageParentEntity) => image.product)
-  images: ImageParentEntity[];
+  @OneToMany(() => ImagePreview, (image: ImagePreview) => image.product)
+  imagesPreview: ImagePreview[];
+
+  @OneToOne(() => ImageCart, (image: ImageCart) => image.product)
+  imageCart: ImageCart;
 }
