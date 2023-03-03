@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 
 import { ImageCart, ImagePreview } from '@entities/images';
 import { Size } from '@models/enum';
@@ -7,9 +7,6 @@ import { BaseEntity } from '../common';
 
 @Entity('products')
 export class ProductEntity extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: string;
-
   // @Column({ type: 'enum', name: 'size', enum: Size, select: false })
   // availableSizes: Size;
 
@@ -41,8 +38,9 @@ export class ProductEntity extends BaseEntity {
   title: string;
 
   @OneToMany(() => ImagePreview, (image: ImagePreview) => image.product)
-  imagesPreview: ImagePreview[];
+  imagePreview: ImagePreview[];
 
   @OneToOne(() => ImageCart, (image: ImageCart) => image.product)
+  @JoinColumn()
   imageCart: ImageCart;
 }

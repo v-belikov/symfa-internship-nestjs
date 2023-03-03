@@ -1,10 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 import { ImageCart, ImagePreview } from '@entities/images';
+import { Size } from '@models/enum';
 
 export class ApiGetProductModel {
   @ApiProperty({ example: ['X', 'L', 'XL', 'XXL'] })
-  availableSizes: Array<string>;
+  availableSizes: Size[];
 
   @ApiProperty({ example: '$' })
   currencyFormat: string;
@@ -33,6 +34,6 @@ export class ApiGetProductModel {
   @ApiProperty({ example: '48866931-544d-4f54-9825-1fdee26d4225' })
   imageCart: ImageCart;
 
-  @ApiProperty({ example: '' })
-  imagesPreview: ImagePreview[];
+  @ApiProperty({ example: '48866931-544d-4f54-9825-1fdee26d4225' })
+  imagesPreview: ImagePreview;
 }

@@ -16,7 +16,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'White T-shirt',
     title: 'Cropped Stay Groovy off white',
     imageCart: { id: '48866931-544d-4f54-9825-1fdee26d4225' },
-    imagesPreview: [{ id: '437416cd-9a14-420f-a8e1-b3dd4b4688f7' }, { id: '9dcb3f46-cda6-4bf4-aeb1-be8561d9da1d' }],
   },
   {
     availableSizes: [Size.X, Size.ML, Size.L],
@@ -30,7 +29,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'Wine',
     title: 'Basic Cactus White T-shirt',
     imageCart: { id: 'f066c517-7434-4fe5-b215-d0fdd65361e3' },
-    imagesPreview: [{ id: '43ebe692-af67-42f5-9435-feea36c7cd37' }, { id: '08ccaf55-ce4b-4272-b794-7b7c66de1a63' }],
   },
   {
     availableSizes: [Size.XL],
@@ -44,7 +42,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'Tony Hawk',
     title: 'Skater Black Sweatshirt',
     imageCart: { id: 'a7b5e50f-dcb4-46e1-9b3c-d12ddd63cae5' },
-    imagesPreview: [{ id: 'b2dc1dc5-97c8-417c-9c0a-cc72f401722e' }, { id: '2d1dcc8c-e9da-44a4-bf3d-f5bec3140e56' }],
   },
   {
     availableSizes: [Size.M, Size.ML],
@@ -58,7 +55,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'Tule',
     title: 'Black Tule Oversized',
     imageCart: { id: 'e2faf70b-7414-42cb-9690-93568b4fb090' },
-    imagesPreview: [{ id: '922cfd9f-6cfc-4cb8-8cce-3a3da778eca6' }, { id: '816f631b-f314-4802-a7f4-085597d051d3' }],
   },
   {
     availableSizes: [Size.S, Size.XS],
@@ -72,7 +68,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'Really Cool T-shirt',
     title: 'Black Batman T-shirt',
     imageCart: { id: '8de7e03b-b1c4-42e9-9965-42f89a43b80a' },
-    imagesPreview: [{ id: '5602332c-2149-4959-a1ab-3a721f437e8b' }, { id: '7a2b47b5-6464-452f-bb45-18f917a556cf' }],
   },
   {
     availableSizes: [Size.X, Size.L, Size.XL],
@@ -86,7 +81,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'Mark Zuck have 365 of this one',
     title: 'Blue T-Shirt',
     imageCart: { id: '8997b295-4bc8-4c3d-8c60-ea00dd1217bf' },
-    imagesPreview: [{ id: 'e372ad9e-43ca-4e08-aca1-d6acdabe8529' }, { id: 'aa069b3c-4af1-47ca-99cb-f51351038f3f' }],
   },
   {
     availableSizes: [Size.X, Size.L, Size.XL, Size.XXL],
@@ -100,7 +94,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: '',
     title: 'Loose Black T-shirt',
     imageCart: { id: '20719840-a130-42f7-9888-2727f4a5541b' },
-    imagesPreview: [{ id: '5ee8ed97-f5c3-481f-922f-d4b4dcb60317' }, { id: '6342df65-cab3-4e60-8780-b3abd0bc184a' }],
   },
   {
     availableSizes: [Size.X, Size.L, Size.XL, Size.XXL],
@@ -114,7 +107,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'White T-shirt',
     title: 'Ringer Hall Pass',
     imageCart: { id: '2c47ee8b-5356-45dc-b2b7-75568dc1fa7c' },
-    imagesPreview: [{ id: '2f8c8091-3de6-4a9b-8d53-de6232dca69c' }, { id: '2764da49-d01e-4b16-9eb3-cb990b096be9' }],
   },
   {
     availableSizes: [Size.X, Size.L],
@@ -128,7 +120,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'You will like this one',
     title: 'Grey T-shirt',
     imageCart: { id: '79cdd40a-b63e-4832-8272-6be4b943af8e' },
-    imagesPreview: [{ id: 'ad92b5fd-e6d9-477a-8956-6bb6c6cf5ca6' }, { id: '5718b28e-ea89-4693-86fa-7718d9f63743' }],
   },
   {
     availableSizes: [Size.X, Size.L],
@@ -142,7 +133,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'Adidas originals',
     title: 'Black T-shirt with white stripes',
     imageCart: { id: '4afb3eee-e88c-43a2-80dc-215839a6562e' },
-    imagesPreview: [{ id: 'e1dd673b-cddd-4559-b6df-45f9397cc435' }, { id: 'e432deff-9604-461e-a351-a6c17b18c50a' }],
   },
   {
     availableSizes: [Size.X, Size.L, Size.XL],
@@ -156,7 +146,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'Cowabunga!',
     title: 'Turtles Ninja T-shirt',
     imageCart: { id: '63481442-fe03-426d-9aa1-781923fa79e7' },
-    imagesPreview: [{ id: '70b7e219-83a4-43a4-8c87-1f7991f1deff' }, { id: 'a3ff4aef-169f-4d3e-9d3a-94d5e28d763f' }],
   },
   {
     availableSizes: [Size.XL, Size.XXL],
@@ -170,7 +159,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'When you wish well',
     title: 'Slim black T-shirt',
     imageCart: { id: 'f973c5c8-935c-42c7-a586-72d8ad41fd1c' },
-    imagesPreview: [{ id: '5b49ac1f-4eef-4673-8aef-58d8612b7726' }, { id: '0cc06033-70b8-43ea-840f-3d7ca9a300bb' }],
   },
   {
     availableSizes: [Size.S],
@@ -184,7 +172,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'Very comfy',
     title: 'Blue Sweatshirt',
     imageCart: { id: '30ac0673-5c97-44a6-9369-1661995c01b1' },
-    imagesPreview: [{ id: '8a1e0361-4679-4160-a6b0-c24cd5b0c07f' }, { id: '104a7e3a-e402-4e61-b404-a48e7fa2b4e2' }],
   },
   {
     availableSizes: [Size.XL],
@@ -198,7 +185,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: 'Girl the future is all your',
     title: 'White T-shirt Gucci',
     imageCart: { id: 'a0b7bc4a-2705-47bd-b4b0-210e98f0b1ac' },
-    imagesPreview: [{ id: 'c78af209-df64-4157-87b1-6ffe594d7b43' }, { id: '9a020324-8f4b-4c62-a3b6-ff222a607014' }],
   },
   {
     availableSizes: [Size.L, Size.XL],
@@ -212,7 +198,6 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: '',
     title: 'Tropical Wine T-shirt',
     imageCart: { id: '95bdbcfc-e710-41d7-b777-4cf018a6a164' },
-    imagesPreview: [{ id: '7abcead3-a482-4e9a-adf5-15ba748c2ae4' }, { id: '99096a4e-ad3b-4523-8c11-3ba5290e50b6' }],
   },
   {
     availableSizes: [Size.L, Size.XL],
@@ -226,6 +211,5 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     style: '',
     title: 'Marine Blue T-shirt',
     imageCart: { id: 'c2e9bdce-497a-44ac-aa4a-443fab611c6c' },
-    imagesPreview: [{ id: '59676446-d929-4fe4-a7fa-cb82d1e878f3' }, { id: '50991f21-e88f-4c35-81fb-23f2bf02212f' }],
   },
 ];

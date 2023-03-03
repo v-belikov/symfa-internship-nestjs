@@ -1,8 +1,10 @@
-import { Controller, Delete, Get, HttpStatus, Param, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Delete, Get, HttpStatus, Param, ParseUUIDPipe, Query } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
+import { ProductEntity } from '@entities/products';
 import { ApiGetImagePreviewModel } from '@modules/images/models';
 import { ApiGetProductModel } from '@modules/products/models';
+import { ProductsDto } from '@modules/products/models/products.dto';
 
 import { ProductsService } from '../services';
 
@@ -17,8 +19,8 @@ export class ProductsController {
     status: HttpStatus.OK,
     isArray: true,
   })
-  getAllProducts() {
-    return this._ProductService.getAllProducts();
+  getAllProducts(@Query() filterParams: ProductsDto) {
+    return this._ProductService.getAllProducts(filterParams.sizes);
   }
 
   @Get(':id')
@@ -26,7 +28,7 @@ export class ProductsController {
     type: ApiGetImagePreviewModel,
     status: HttpStatus.OK,
   })
-  getProductById(@Param('id', ParseUUIDPipe) id: string): Promise<ApiGetProductModel> {
+  getProductById(@Param('id', ParseUUIDPipe) id: string): Promise<ProductEntity> {
     return this._ProductService.getProductById(id);
   }
 

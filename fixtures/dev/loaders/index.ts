@@ -1,5 +1,4 @@
-import { PRODUCT_LOADERS } from '@fixtures/dev/loaders/products';
+import { ImageCartLoader, ImagePreviewLoader } from '@fixtures/dev/loaders/images';
+import { ProductLoader } from '@fixtures/dev/loaders/products';
 
-import { IMAGE_LOADERS } from './images';
-
-export const DEV_LOADERS = [...IMAGE_LOADERS, ...PRODUCT_LOADERS];
+export const DEV_LOADERS = [ImageCartLoader, ProductLoader, ImagePreviewLoader];
