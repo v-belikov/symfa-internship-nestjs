@@ -7,4 +7,4 @@ import { PRODUCTS_SERVICES } from './services';
   controllers: [...PRODUCTS_CONTROLLERS],
   providers: [...PRODUCTS_SERVICES],
 })
-export class ImagesModule {}
+export class ProductsModule {}

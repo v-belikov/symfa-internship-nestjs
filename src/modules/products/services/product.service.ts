@@ -17,6 +17,7 @@ export class ProductParentEntityService {
   async getAll(): Promise<ApiGetProductModel[]> {
     return this._productsRepository.find({
       order: {
+        id: 'asc',
         title: 'asc',
         price: 'asc',
         currencyFormat: 'asc',

@@ -7,6 +7,9 @@ import { BaseEntity } from '../common';
 @Entity('products')
 export class ProductEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 255, nullable: false })
+  id: string;
+
+  @Column({ type: 'varchar', length: 255, nullable: false })
   title: string;
 
   @Column({ type: 'float', nullable: false })

@@ -3,6 +3,9 @@ import { ApiProperty } from '@nestjs/swagger';
 import { ImagePreview } from '@entities/images';
 
 export class ApiGetProductModel {
+  @ApiProperty({ example: '5' })
+  id: string;
+
   @ApiProperty({ example: ['X', 'L', 'XL', 'XXL'] })
   availableSizes: Array<string>;
 

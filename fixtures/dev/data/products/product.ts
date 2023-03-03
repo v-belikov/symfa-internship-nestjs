@@ -4,6 +4,7 @@ import { ProductEntity } from '@entities/products';
 
 export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   {
+    id: '0',
     availableSizes: ['X', 'L', 'XL', 'XXL'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -13,9 +14,10 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     price: 10.9,
     style: 'White T-shirt',
     title: 'Cropped Stay Groovy off white',
-    images: [{ id: '48866931-544d-4f54-9825-1fdee26d4225' }],
+    // images: [{ id: '48866931-544d-4f54-9825-1fdee26d4225' }],
   },
   {
+    id: '1',
     availableSizes: ['X', 'ML', 'L'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -27,6 +29,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Basic Cactus White T-shirt',
   },
   {
+    id: '2',
     availableSizes: ['XL'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -38,6 +41,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Skater Black Sweatshirt',
   },
   {
+    id: '3',
     availableSizes: ['M', 'ML'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -49,6 +53,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Black Tule Oversized',
   },
   {
+    id: '4',
     availableSizes: ['S', 'XS'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -60,6 +65,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Black Batman T-shirt',
   },
   {
+    id: '5',
     availableSizes: ['X', 'L', 'XL'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -71,6 +77,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Blue T-Shirt',
   },
   {
+    id: '6',
     availableSizes: ['X', 'L', 'XL', 'XXL'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -82,6 +89,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Loose Black T-shirt',
   },
   {
+    id: '7',
     availableSizes: ['X', 'L', 'XL', 'XXL'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -93,6 +101,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Ringer Hall Pass',
   },
   {
+    id: '8',
     availableSizes: ['X', 'L'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -104,6 +113,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Grey T-shirt',
   },
   {
+    id: '9',
     availableSizes: ['X', 'L'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -115,6 +125,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Black T-shirt with white stripes',
   },
   {
+    id: '10',
     availableSizes: ['X', 'L', 'XL'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -126,6 +137,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Turtles Ninja T-shirt',
   },
   {
+    id: '11',
     availableSizes: ['XL', 'XXL'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -137,6 +149,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Slim black T-shirt',
   },
   {
+    id: '12',
     availableSizes: ['S'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -148,6 +161,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Blue Sweatshirt',
   },
   {
+    id: '13',
     availableSizes: ['XL'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -159,6 +173,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'White T-shirt Gucci',
   },
   {
+    id: '14',
     availableSizes: ['L', 'XL'],
     currencyFormat: '$',
     currencyId: 'USD',
@@ -170,6 +185,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
     title: 'Tropical Wine T-shirt',
   },
   {
+    id: '15',
     availableSizes: ['L', 'XL'],
     currencyFormat: '$',
     currencyId: 'USD',
