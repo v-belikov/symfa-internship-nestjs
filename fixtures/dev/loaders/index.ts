@@ -1,4 +1,4 @@
-import { IMAGE_LOADERS } from './images';
-import { PRODUCT_LOADERS } from './products';
+import { ImageCartLoader, ImagePreviewLoader } from './images';
+import { ProductParentEntityLoader } from './products';
 
-export const DEV_LOADERS = [...IMAGE_LOADERS, ...PRODUCT_LOADERS];
+export const DEV_LOADERS = [ImageCartLoader, ProductParentEntityLoader, ImagePreviewLoader];
