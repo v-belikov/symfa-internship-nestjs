@@ -8,7 +8,7 @@ import { ProductEntity } from '@entities/products';
 export class ProductsService {
   constructor(@InjectRepository(ProductEntity) private _productRepository: Repository<ProductEntity>) {}
 
-  async getAllProducts(filterParams: string[]): Promise<ProductEntity[]> {
+  async getAllProducts(filterSize: string[]): Promise<ProductEntity[]> {
     const queryBuilder = this._productRepository
       .createQueryBuilder('product')
       .select([
@@ -28,7 +28,7 @@ export class ProductsService {
       .innerJoin('product.imagePreview', 'imagePreview')
       .innerJoin('product.imageCart', 'imageCart');
 
-    filterParams?.forEach((size: string, index: number) => {
+    filterSize?.forEach((size: string, index: number) => {
       const key = `size${index}`;
 
       queryBuilder.orWhere(`JSON_SEARCH(product.availableSizes, 'one', :${key}, '$')`, { [key]: size });
