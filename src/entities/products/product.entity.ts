@@ -7,9 +7,6 @@ import { BaseEntity } from '../common';
 
 @Entity('products')
 export class ProductEntity extends BaseEntity {
-  // @Column({ type: 'enum', name: 'size', enum: Size, select: false })
-  // availableSizes: Size;
-
   @Column('json')
   availableSizes: Size[];
 

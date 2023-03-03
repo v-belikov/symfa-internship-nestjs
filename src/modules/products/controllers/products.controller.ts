@@ -4,14 +4,14 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ProductEntity } from '@entities/products';
 import { ApiGetImagePreviewModel } from '@modules/images/models';
 import { ApiGetProductModel } from '@modules/products/models';
-import { ProductsDto } from '@modules/products/models/products.dto';
+import { GetProductsQueryDto } from '@modules/products/models/GetProductsQueryDto';
 
 import { ProductsService } from '../services';
 
 @Controller('products')
 @ApiTags('products')
 export class ProductsController {
-  constructor(private readonly _ProductService: ProductsService) {}
+  constructor(private readonly _productService: ProductsService) {}
 
   @Get()
   @ApiResponse({
@@ -19,8 +19,8 @@ export class ProductsController {
     status: HttpStatus.OK,
     isArray: true,
   })
-  getAllProducts(@Query() filterParams: ProductsDto) {
-    return this._ProductService.getAllProducts(filterParams.sizes);
+  getAllProducts(@Query() filterSizes: GetProductsQueryDto) {
+    return this._productService.getAllProducts(filterSizes.sizes);
   }
 
   @Get(':id')
@@ -29,12 +29,12 @@ export class ProductsController {
     status: HttpStatus.OK,
   })
   getProductById(@Param('id', ParseUUIDPipe) id: string): Promise<ProductEntity> {
-    return this._ProductService.getProductById(id);
+    return this._productService.getProductById(id);
   }
 
   @Delete(':id')
   @ApiResponse({ status: HttpStatus.OK })
   deleteProduct(@Param('id', ParseUUIDPipe) id: string) {
-    return this._ProductService.deleteProduct(id);
+    return this._productService.deleteProduct(id);
   }
 }

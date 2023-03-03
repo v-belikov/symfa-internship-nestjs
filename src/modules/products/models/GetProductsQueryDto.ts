@@ -3,10 +3,10 @@ import { IsArray, IsEnum, IsOptional } from 'class-validator';
 
 import { Size } from '@models/enum';
 
-export class ProductsDto {
+export class GetProductsQueryDto {
   @IsArray()
   @IsOptional()
   @IsEnum(Size, { each: true })
   @ApiPropertyOptional({ enum: Size, name: 'sizes[]', isArray: true })
-  sizes: Size[];
+  sizes?: Size[];
 }

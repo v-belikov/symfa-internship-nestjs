@@ -37,8 +37,8 @@ export class ProductsService {
     return queryBuilder.getMany();
   }
 
-  async getProductById(id: string): Promise<ProductEntity> {
-    const product = await this._productRepository.findOneBy({ id });
+  getProductById(id: string): Promise<ProductEntity> {
+    const product = this._productRepository.findOneBy({ id });
 
     if (!product) {
       throw new NotFoundException('Product not found');
