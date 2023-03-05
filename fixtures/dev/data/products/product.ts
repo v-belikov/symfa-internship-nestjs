@@ -1,11 +1,12 @@
 import { DeepPartial } from 'typeorm';
 
 import { ProductEntity } from '@entities/products';
+import { Size } from '@models/enum';
 
 export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   {
     id: '81582a51-5af2-4811-8584-7065a1b54400',
-    availableSizes: ['X', 'L', 'XL', 'XXL'],
+    availableSizes: [Size.X, Size.L, Size.XL, Size.XXL],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '14/15 s/nº',
@@ -18,7 +19,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: 'd25b3a3a-3470-4869-af85-962a989daa32',
-    availableSizes: ['X', 'ML', 'L'],
+    availableSizes: [Size.X, Size.ML, Size.L],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '',
@@ -31,7 +32,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: '9140080a-3fe4-4496-9ec1-f1375870f109',
-    availableSizes: ['XL'],
+    availableSizes: [Size.XL],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '14/15 s/nº - Jogador',
@@ -44,7 +45,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: 'c7cee40d-98d7-423e-9523-f3ea02a69582',
-    availableSizes: ['M', 'ML'],
+    availableSizes: [Size.M, Size.ML],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '',
@@ -57,7 +58,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: '59294dc0-73b8-4060-b4e0-477baa618530',
-    availableSizes: ['S', 'XS'],
+    availableSizes: [Size.S, Size.XS],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '4 MSL',
@@ -70,7 +71,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: '35e61a53-4a5c-4f9c-b561-be80f2d7afec',
-    availableSizes: ['X', 'L', 'XL'],
+    availableSizes: [Size.X, Size.L, Size.XL],
     currencyFormat: '$',
     currencyId: 'USD',
     description: 'GPX Poly 1',
@@ -83,7 +84,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: 'a785dbc7-becb-494c-b13c-ed2bfd4f34f4',
-    availableSizes: ['X', 'L', 'XL', 'XXL'],
+    availableSizes: [Size.X, Size.L, Size.XL, Size.XXL],
     currencyFormat: '$',
     currencyId: 'USD',
     description: 'Treino 2014',
@@ -96,7 +97,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: '941a1e93-2d29-43f9-a33f-b78ef83a9fb7',
-    availableSizes: ['X', 'L', 'XL', 'XXL'],
+    availableSizes: [Size.X, Size.L, Size.XL, Size.XXL],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '14/15 s/nº',
@@ -109,7 +110,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: '42e30d43-b51f-47e8-ab20-c3aa9761e48a',
-    availableSizes: ['X', 'L'],
+    availableSizes: [Size.X, Size.L],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '14/15 s/nº',
@@ -122,7 +123,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: '761611eb-14b0-4964-ac92-4d4e742d12c4',
-    availableSizes: ['X', 'L'],
+    availableSizes: [Size.X, Size.L],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '2014 s/nº',
@@ -135,7 +136,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: 'be42b8cd-c987-4cac-9ffe-419f17eb67b0',
-    availableSizes: ['X', 'L', 'XL'],
+    availableSizes: [Size.X, Size.L, Size.XL],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '14/15 + Camiseta 1º Mundial',
@@ -148,7 +149,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: '188984d8-ef4e-4517-b817-9e471a049f13',
-    availableSizes: ['XL', 'XXL'],
+    availableSizes: [Size.XL, Size.XXL],
     currencyFormat: '$',
     currencyId: 'USD',
     description: 'T-shirt 13/14',
@@ -161,7 +162,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: 'e4e0e2eb-6a30-4eb2-a93f-d8c829e4a952',
-    availableSizes: ['S'],
+    availableSizes: [Size.S],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '1977 Infantil',
@@ -174,7 +175,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: 'ed1debc4-fdef-4cd7-b23e-4921b611539d',
-    availableSizes: ['XL'],
+    availableSizes: [Size.XL],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '',
@@ -187,7 +188,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: '53f0234c-7862-4e7e-bfc6-9971747b0df8',
-    availableSizes: ['L', 'XL'],
+    availableSizes: [Size.L, Size.XL],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '',
@@ -200,7 +201,7 @@ export const PRODUCT_FIXTURES: DeepPartial<ProductEntity>[] = [
   },
   {
     id: 'ea61381c-f7e3-4717-8402-0e74bba72508',
-    availableSizes: ['L', 'XL'],
+    availableSizes: [Size.L, Size.XL],
     currencyFormat: '$',
     currencyId: 'USD',
     description: '',
