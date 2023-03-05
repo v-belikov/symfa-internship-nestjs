@@ -17,17 +17,7 @@ export class ProductParentEntityService {
   async getAll(): Promise<ApiGetProductModel[]> {
     return this._productsRepository.find({
       order: {
-        id: 'asc',
-        title: 'asc',
-        price: 'asc',
-        currencyFormat: 'asc',
-        availableSizes: 'asc',
-        currencyId: 'asc',
-        description: 'asc',
-        installments: 'asc',
-        isFreeShipping: 'asc',
-        style: 'asc',
-        // images: ImagePreview[];
+        createdAt: 'asc',
       },
     });
   }

@@ -1,11 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 import { ImagePreview } from '@entities/images';
+import { AwareIdDto } from '@models/dto';
 
-export class ApiGetProductModel {
-  @ApiProperty({ example: '5' })
-  id: string;
-
+export class ApiGetProductModel extends AwareIdDto {
   @ApiProperty({ example: ['X', 'L', 'XL', 'XXL'] })
   availableSizes: Array<string>;
 

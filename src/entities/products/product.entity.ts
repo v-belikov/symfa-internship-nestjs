@@ -3,12 +3,10 @@ import { Column, Entity, OneToMany } from 'typeorm';
 import { ImagePreview } from '@entities/images';
 
 import { BaseEntity } from '../common';
+import { ImageCart } from '../images/image-cart.entity';
 
 @Entity('products')
 export class ProductEntity extends BaseEntity {
-  @Column({ type: 'varchar', length: 255, nullable: false })
-  id: string;
-
   @Column({ type: 'varchar', length: 255, nullable: false })
   title: string;
 
@@ -38,4 +36,7 @@ export class ProductEntity extends BaseEntity {
 
   @OneToMany(() => ImagePreview, (image: ImagePreview) => image.product)
   images: ImagePreview[];
+
+  @OneToMany(() => ImageCart, (image: ImageCart) => image.product)
+  imagesCart: ImageCart[];
 }
