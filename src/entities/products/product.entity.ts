@@ -36,7 +36,7 @@ export class ProductEntity extends BaseEntity {
   style: string;
 
   @OneToMany(() => ImagePreview, (image: ImagePreview) => image.product)
-  images: ImagePreview[];
+  imagesPreview: ImagePreview[];
 
   @OneToMany(() => ImageCart, (image: ImageCart) => image.product)
   imagesCart: ImageCart[];

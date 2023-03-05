@@ -17,7 +17,11 @@ export class ImagePreviewController {
     isArray: true,
   })
   getAll(): Promise<ApiGetImagePreviewModel[]> {
-    return this._imagePreviewService.getAll();
+    const allImages = this._imagePreviewService.getAll();
+
+    console.log('get all');
+
+    return allImages;
   }
 
   @Get(':id')

@@ -7,6 +7,6 @@ import { ImageParentEntity } from './image.entity';
 
 @ChildEntity(ImageType.Cart)
 export class ImageCart extends ImageParentEntity {
-  @ManyToOne(() => ProductEntity, (product: ProductEntity) => product.images)
+  @ManyToOne(() => ProductEntity, (product: ProductEntity) => product.imagesCart)
   product: ProductEntity;
 }

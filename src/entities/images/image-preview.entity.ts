@@ -10,6 +10,6 @@ export class ImagePreview extends ImageParentEntity {
   @Column({ type: 'tinyint', nullable: true, default: null })
   order: number;
 
-  @ManyToOne(() => ProductEntity, (product: ProductEntity) => product.images)
+  @ManyToOne(() => ProductEntity, (product: ProductEntity) => product.imagesPreview)
   product: ProductEntity;
 }
