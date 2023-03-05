@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 
 import { ImagePreview } from '@entities/images';
+import { Size } from '@models/enum';
 
 import { BaseEntity } from '../common';
 import { ImageCart } from '../images/image-cart.entity';
@@ -16,8 +17,8 @@ export class ProductEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 3, nullable: false })
   currencyFormat: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
-  availableSizes: Array<string>;
+  @Column({ type: 'json', nullable: false })
+  availableSizes: Size[];
 
   @Column({ type: 'varchar', length: 255, nullable: false })
   currencyId: string;
