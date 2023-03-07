@@ -26,15 +26,15 @@ export class ProductsService {
         'product.title',
       ])
       .innerJoin('product.imagePreview', 'imagePreview')
-      .innerJoin('product.imageCart', 'imageCart');
+      .innerJoin('product.imageCart', 'imageCart')
+      // .addOrderBy('product.createdAt', 'ASC')
+      .addOrderBy('imagePreview.order', 'ASC');
 
     filterParams?.forEach((size: string, index: number) => {
       const key = `size${index}`;
 
       queryBuilder.orWhere(`JSON_SEARCH(product.availableSizes, 'one', :${key}, '$')`, { [key]: size });
     });
-
-    // console.log(result)
 
     return queryBuilder.getMany();
   }
