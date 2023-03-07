@@ -1,10 +1,10 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
 
-import { ImagePreview } from '@entities/images';
 import { Size } from '@models/enum';
 
 import { BaseEntity } from '../common';
-import { ImageCart } from '../images/image-cart.entity';
+import { ImageCart } from '../images';
+import { ImagePreview } from '../images';
 
 @Entity('products')
 export class ProductEntity extends BaseEntity {
@@ -35,9 +35,10 @@ export class ProductEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 255, nullable: false })
   style: string;
 
-  @OneToMany(() => ImagePreview, (image: ImagePreview) => image.product)
-  imagesPreview: ImagePreview[];
-
   @OneToMany(() => ImageCart, (image: ImageCart) => image.product)
-  imagesCart: ImageCart;
+  @JoinColumn()
+  imageCart: ImageCart;
+
+  @OneToMany(() => ImagePreview, (image: ImagePreview) => image.product)
+  imagePreview: ImagePreview[];
 }

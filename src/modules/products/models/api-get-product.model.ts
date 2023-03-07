@@ -32,8 +32,8 @@ export class ApiGetProductModel extends AwareIdDto {
   title: string;
 
   @ApiProperty({ example: '48866931-544d-4f54-9825-1fdee26d4225' })
-  imagesPreview: ImagePreview[];
+  imagePreview: ImagePreview[];
 
   @ApiProperty({ example: '4afb3eee-e88c-43a2-80dc-215839a6562e' })
-  imagesCart: ImageCart;
+  imageCart: ImageCart;
 }
