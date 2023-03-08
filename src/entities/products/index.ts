@@ -1,4 +1,4 @@
-import { ProductEntity } from '@entities/products/product.entity';
+import { ProductEntity } from './product.entity';
 
 export * from './product.entity';
 

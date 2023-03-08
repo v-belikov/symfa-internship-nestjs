@@ -1,14 +1,13 @@
-import { DeepPartial } from 'typeorm';
-
 import { ProductEntity } from '@entities/products';
+import { UserEntity } from '@entities/users';
 import { AbstractLoader, IRelationsOptions } from '@fixtures/abstract-loader';
-import { PRODUCT_FIXTURES } from '@fixtures/dev/data/products';
+import { USERS_FIXTURES } from '@fixtures/dev/data/users';
 import { EnvironmentType } from '@models/enum';
 
-export class ProductLoader extends AbstractLoader<ProductEntity> {
-  entity: new () => ProductEntity = ProductEntity;
+export class UsersLoader extends AbstractLoader<UserEntity> {
+  entity: new () => UserEntity = UserEntity;
 
-  data: DeepPartial<ProductEntity>[] = PRODUCT_FIXTURES;
+  data: Partial<ProductEntity>[] = USERS_FIXTURES;
 
   environments: EnvironmentType[] = [EnvironmentType.Development];
 
