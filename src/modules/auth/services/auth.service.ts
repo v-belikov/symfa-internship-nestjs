@@ -18,8 +18,8 @@ export class AuthService {
     private readonly _usersRepository: Repository<UserEntity>,
   ) {}
 
-  async validateUser(login: string, pass: string): Promise<any> {
-    const user = await this._usersService.findOne(login);
+  async validateUser(username: string, pass: string): Promise<any> {
+    const user = await this._usersService.findOne(username);
 
     if (user && user.password === pass) {
       const { password, ...result } = user;
@@ -37,12 +37,12 @@ export class AuthService {
   async registration(dto: CreateUserDto): Promise<CreateUserDto> {
     dto.password = await this.hashPassword(dto.password);
     await this._usersRepository.create(dto);
+    await this._usersRepository.save(dto);
 
     return dto;
   }
 
   async login(user: any) {
-    console.log(user);
     const payload = { username: user.username, sub: user.userId, roles: user.roles };
 
     return {
