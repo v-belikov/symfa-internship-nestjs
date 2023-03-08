@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common';
 
-import { IUser } from './user.interface';
-
 // This should be a real class/interface representing a user entity
 
-// export type User = any;
+export type User = any;
 
 @Injectable()
 export class UsersService {
-  private readonly users = [
+  // eslint-disable-next-line @typescript-eslint/typedef
+  private readonly _users = [
     {
       username: 'john',
       email: 'blabla@bail',
@@ -21,7 +20,8 @@ export class UsersService {
     },
   ];
 
-  async findOne(username: string): Promise<IUser | undefined> {
-    return this.users.find((user) => user.username === username);
+  async findOne(username: string): Promise<User | undefined> {
+    // eslint-disable-next-line @typescript-eslint/typedef
+    return this._users.find((user) => user.username === username);
   }
 }
