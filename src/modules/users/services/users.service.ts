@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 
-// This should be a real class/interface representing a user entity
+// eslint-disable-next-line no-restricted-imports
+import { IUser } from '../user.interface';
 
-export type User = any;
+export type User = IUser;
 
 @Injectable()
 export class UsersService {

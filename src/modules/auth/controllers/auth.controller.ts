@@ -20,7 +20,7 @@ export class AuthController {
   @IsString()
   @IsNotEmpty()
   @Post('auth/login')
-  async logoutUser(@Request() username: string) {
-    return this._authService.logoutUser(username);
+  async logoutUser(@Request() request: any) {
+    return this._authService.logoutUser(request);
   }
 }

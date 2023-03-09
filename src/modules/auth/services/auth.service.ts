@@ -4,10 +4,8 @@ import { JwtService } from '@nestjs/jwt';
 import { IUser } from '@modules/users/user.interface';
 
 import { UsersService } from '../../users/services/users.service';
-// const saltRounds = 7;
 
-// bcrypt.hash(JwtService, saltRounds, function (err, hash) {
-// });
+import bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +14,10 @@ export class AuthService {
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this._usersService.findOne(username);
 
-    if (user && user.password === pass) {
+    const saltRounds = 7;
+    const hasPassword = await bcrypt.hash(pass, saltRounds);
+
+    if (user && user.password === hasPassword) {
       const { password, ...result } = user;
 
       return result;
@@ -31,11 +32,13 @@ export class AuthService {
       password: password,
     };
 
-    return { instance_jwtService: this._jwtService.sign(user) };
+    return { accessToken: this._jwtService.sign(user), refreshToken: this._jwtService.sign(user) };
   }
 
   async logoutUser(username: string) {
-    return { instance_jwtService: this._jwtService.sign(username) };
+    const user = { username: username };
+
+    return { accessToken: this._jwtService.sign(user), refreshToken: this._jwtService.sign(user) };
     // return this._jwtService.sign(username);
   }
 }
