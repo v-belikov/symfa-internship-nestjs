@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
-import { RolesEnum } from '@shared/user/roles.enum';
+import { UserEntity } from '@entities/users';
 
 import { IUser } from '../user.interface';
 
@@ -8,24 +10,16 @@ export type User = IUser;
 
 @Injectable()
 export class UsersService {
-  private readonly _users: Array<any> = [
-    {
-      id: '1',
-      email: '1@mail.ru',
-      username: 'john',
-      password: 'changeme',
-      roles: [RolesEnum.User],
-    },
-    {
-      id: '2',
-      email: '2@mail.ru',
-      username: 'maria',
-      password: 'guess',
-      roles: [RolesEnum.User],
-    },
-  ];
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly _userRepository: Repository<UserEntity>,
+  ) {}
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this._users.find((user: any) => user.username === username);
+  async findOneByUsername(username: string) {
+    return this._userRepository.findOne({ where: { username } });
+  }
+
+  async findOneByEmail(email: string) {
+    return this._userRepository.findOne({ where: { email } });
   }
 }
