@@ -32,7 +32,7 @@ export class AuthService {
     return null;
   }
 
-  async generateJwtToken(user) {
+  async generateJwtToken(user: string) {
     const payload = { user };
 
     return this._jwtService.sign(payload, {
@@ -69,8 +69,6 @@ export class AuthService {
 
   async login(dto: userLoginDTO) {
     const existUser = await this._usersService.findOneByEmail(dto.email);
-
-    console.log(existUser);
 
     if (!existUser) {
       throw new BadRequestException({ message: 'User not exist' });
