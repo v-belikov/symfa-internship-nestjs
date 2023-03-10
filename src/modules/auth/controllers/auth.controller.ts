@@ -1,21 +1,32 @@
-import { Controller, Post, Request } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 
-import { IUserRequest } from '@modules/users/user.interface';
+import { UserEntity } from '@entities/user';
+import { CreateUserDto } from '@modules/users';
 
 // eslint-disable-next-line no-restricted-imports
 import { AuthService } from '../services/auth.service';
 
-@Controller('auth/login')
+@Controller('login/auth')
 export class AuthController {
   constructor(private readonly _authService: AuthService) {}
 
-  @Post()
-  async loginUser(@Request() request: IUserRequest) {
-    return this._authService.loginUser(request.username, request.password);
+  @Get()
+  async getAll(): Promise<UserEntity[]> {
+    return this._authService.getAll();
   }
 
   @Post()
-  async logoutUser(@Request() request: IUserRequest) {
-    return this._authService.logoutUser(request.username);
+  async registrationUser(@Body('user') dto: CreateUserDto) {
+    return this._authService.registrationUser(dto);
+  }
+
+  @Post()
+  async loginUser(@Body('user') dto: CreateUserDto) {
+    return this._authService.loginUser(dto);
+  }
+
+  @Post()
+  async logoutUser(@Body('user') dto: CreateUserDto) {
+    return this._authService.logoutUser(dto);
   }
 }

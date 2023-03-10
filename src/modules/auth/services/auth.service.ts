@@ -6,7 +6,8 @@ import { Repository } from 'typeorm';
 import { Config } from '@core/config';
 import { UserEntity } from '@entities/user';
 import { UsersService } from '@modules/users/services';
-import { IUserRequest } from '@modules/users/user.interface';
+
+import { CreateUserDto } from '../../users/user.dto';
 
 import bcrypt from 'bcrypt';
 
@@ -31,31 +32,27 @@ export class AuthService {
     return null;
   }
 
-  async registrationUser(username: string, password: string) {
-    const user: IUserRequest = {
-      username: username,
-      password: password,
-    };
-
-    user.password = await bcrypt.hash(password, Config.get.hashKey);
+  async registrationUser(user: CreateUserDto) {
+    user.password = await bcrypt.hash(user.password, Config.get.hashKey);
 
     await this._usersRepository.create(user);
 
     return user;
   }
 
-  async loginUser(username: string, password: string) {
-    const user: IUserRequest = {
-      username: username,
-      password: password,
-    };
-
-    return { accessToken: this._jwtService.sign(user) };
+  async loginUser(user: CreateUserDto) {
+    return { accessToken: this._jwtService.sign(user.username) };
   }
 
-  async logoutUser(username: string) {
-    const user = { username: username };
+  async logoutUser(user: CreateUserDto) {
+    return { accessToken: this._jwtService.sign(user.username) };
+  }
 
-    return { accessToken: this._jwtService.sign(user) };
+  async getAll(): Promise<UserEntity[]> {
+    return this._usersRepository.find({
+      order: {
+        createdAt: 'asc',
+      },
+    });
   }
 }
