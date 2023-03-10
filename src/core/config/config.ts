@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { config } from 'dotenv';
-import { existsSync } from 'fs';
-import { join } from 'path';
+import { existsSync, readFileSync } from 'fs';
+import { join, resolve } from 'path';
 import { DataSourceOptions } from 'typeorm';
 
 import { ENTITIES, SUBSCRIBERS } from '@entities/index';
@@ -76,5 +76,17 @@ export class Config {
       logger: 'advanced-console',
       migrationsTableName: 'Migrations',
     };
+  }
+
+  get hashKey(): string {
+    return this._env.HASH_SALT;
+  }
+
+  get hashPrivateKey(): string {
+    return readFileSync(resolve(__dirname, '..keys/key.pem'), 'utf-8');
+  }
+
+  get hashPublicKey(): string {
+    return readFileSync(resolve(__dirname, '..keys/key.pub'), 'utf-8');
   }
 }

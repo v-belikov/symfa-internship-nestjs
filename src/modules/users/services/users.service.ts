@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
-// eslint-disable-next-line no-restricted-imports
-import { IUser } from '../user.interface';
+import { IUserRequest } from '@modules/users/user.interface';
 
-export type User = IUser;
+export type User = IUserRequest;
 
 @Injectable()
 export class UsersService {
