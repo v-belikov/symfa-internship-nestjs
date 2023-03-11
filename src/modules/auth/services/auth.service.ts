@@ -3,13 +3,12 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { Config } from '@core/config';
+// import { Config } from '@core/config';
 import { UserEntity } from '@entities/user';
+import { CreateUserDto } from '@modules/users';
 import { UsersService } from '@modules/users/services';
 
-import { CreateUserDto } from '../../users/user.dto';
-
-import bcrypt from 'bcrypt';
+// import bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -32,20 +31,26 @@ export class AuthService {
     return null;
   }
 
-  async registrationUser(user: CreateUserDto) {
-    user.password = await bcrypt.hash(user.password, Config.get.hashKey);
+  async createUser(user: CreateUserDto): Promise<UserEntity> {
+    const newUser = new UserEntity();
 
-    await this._usersRepository.create(user);
+    Object.assign(newUser, user);
 
-    return user;
+    return await this._usersRepository.save(newUser);
   }
 
-  async loginUser(user: CreateUserDto) {
-    return { accessToken: this._jwtService.sign(user.username) };
+  generateJwt(user: UserEntity): string {
+    return this._jwtService.sign({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+    });
   }
 
-  async logoutUser(user: CreateUserDto) {
-    return { accessToken: this._jwtService.sign(user.username) };
+  buildUserResponse(user: UserEntity): any {
+    return {
+      user: { ...user, token: this.generateJwt(user) },
+    };
   }
 
   async getAll(): Promise<UserEntity[]> {

@@ -16,17 +16,9 @@ export class AuthController {
   }
 
   @Post()
-  async registrationUser(@Body('user') dto: CreateUserDto) {
-    return this._authService.registrationUser(dto);
-  }
+  async createUser(@Body('user') createUserDto: CreateUserDto): Promise<UserEntity> {
+    const user = await this._authService.createUser(createUserDto);
 
-  @Post()
-  async loginUser(@Body('user') dto: CreateUserDto) {
-    return this._authService.loginUser(dto);
-  }
-
-  @Post()
-  async logoutUser(@Body('user') dto: CreateUserDto) {
-    return this._authService.logoutUser(dto);
+    return this._authService.buildUserResponse(user);
   }
 }
