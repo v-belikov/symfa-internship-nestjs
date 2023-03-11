@@ -1,29 +1,83 @@
-import { Injectable } from '@nestjs/common';
-import { Users } from '../../../entities/user/user.entity';
-import { Role } from '../role.enum';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
-export type User = Users;
+import { Config } from '@core/config';
+import { User } from '@entities/user';
+
+import { AuthUserDto } from '../models';
+
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
-export class UsersService {
-  private readonly users = [
-    {
-      id: 1,
-      userName: 'anna',
-      email: 'ssss',
-      password: 'changeme',
-      roles: [Role.User],
-    },
-    {
-      id: 2,
-      userName: 'maria',
-      email: 'hhhh',
-      password: 'guess',
-      roles: [Role.Admin],
-    },
-  ];
+export class UserService {
+  constructor(
+    @InjectRepository(User)
+    private _usersRepository: Repository<User>,
+  ) {}
 
-  async findOne(userName: string): Promise<User | undefined> {
-    return this.users.find(user => user.userName === userName);
+  //если пароль верный то вернуть пользователя
+  async getAuthenticatedUser(email: string, plainTextPassword: string): Promise<any> {
+    const user = await this.findOneByEmail(email);
+
+    await this._verifyPassword(plainTextPassword, user.password);
+    delete user.password;
+
+    return user;
+  }
+
+  async findOneByEmail(inputEmail: string): Promise<User | undefined> {
+    const user = await this._usersRepository
+      .createQueryBuilder('user')
+      .select(['user.id', 'user.username', 'user.email', 'user.password'])
+      .where('user.email = :inputEmail', { inputEmail })
+      .getOne();
+
+    if (user) {
+      return user;
+    }
+
+    throw new BadRequestException('Wrong email');
+  }
+
+  async create({ password: plainPassword, ...userData }: AuthUserDto) {
+    try {
+      const password = await bcrypt.hash(plainPassword, +Config.get.hashSalt);
+      const user = await this._usersRepository.create({ ...userData, password });
+
+      await this._usersRepository.save(user);
+
+      delete user.password;
+
+      return user;
+    } catch (erorr) {
+      throw new BadRequestException('user with that email already exists');
+    }
+  }
+
+  async remove(user: AuthUserDto) {
+    const removedUser = await this.findOneByEmail(user.email);
+
+    return await this._usersRepository.delete(removedUser.id);
+  }
+
+  async update({ password: plainPassword, ...userData }: AuthUserDto) {
+    const updatedUser = await this.findOneByEmail(userData.email);
+    const password = await bcrypt.hash(plainPassword, +Config.get.hashSalt);
+
+    updatedUser.password = password;
+    updatedUser.username = userData.username;
+    await this._usersRepository.save(updatedUser);
+
+    return updatedUser;
+  }
+
+  //для хэширования пароля
+  private async _verifyPassword(password: string, hashedPassword: string) {
+    const isPasswordMatching = await bcrypt.compare(password, hashedPassword);
+
+    if (!isPasswordMatching) {
+      throw new BadRequestException('Wrong password');
+    }
   }
 }

@@ -1,33 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { UsersService } from '@shared/user/services';
-// import { USERS_SERVICES } from '@shared/user/services';
 import { JwtService } from '@nestjs/jwt';
+
+import { AuthUserDto, UserService } from '@shared/user';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private usersService: UsersService,
-    private jwtService: JwtService
-  ) {}
+  constructor(private readonly _userService: UserService, private readonly _jwtService: JwtService) {}
 
-  async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOne(username);
-    if (user && user.password === pass) {
-      const { password, ...result } = user;
-      return result;
-    }
-    return null;
-  }
-
-  async login(user: any) {
+  //возвращает токен юзера
+  async login(email: string, plainTextPassword: string) {
+    const user = await this._userService.getAuthenticatedUser(email, plainTextPassword);
     const payload = {
-      username: user.username,
-      sub: user.userId,
-      roles: user.roles,
+      email: user.email,
+      sub: user.id,
     };
+
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this._jwtService.sign(payload),
     };
   }
 
+  async createUser(user: AuthUserDto) {
+    return this._userService.create(user);
+  }
+
+  async removeUser(user: AuthUserDto) {
+    return this._userService.remove(user);
+  }
+
+  async updateUser(user: AuthUserDto) {
+    return this._userService.update(user);
+  }
 }

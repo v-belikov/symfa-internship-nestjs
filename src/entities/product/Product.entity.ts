@@ -3,8 +3,8 @@ import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { Size } from '@models/enum';
 
 import { BaseEntity } from '../common';
-import { ImageCart } from '../images';
-import { ImagePreview } from '../images';
+import { ImageCart, ImagePreview } from '../images';
+import { Order } from '../order';
 
 @Entity('products')
 export class Product extends BaseEntity {
@@ -55,6 +55,9 @@ export class Product extends BaseEntity {
 
   @OneToMany(() => ImagePreview, (image: ImagePreview) => image.product)
   imagePreview: ImagePreview[];
+
+  @OneToMany(() => Order, (ordername: Order) => ordername.product)
+  orderName: Order[];
 
   @Column({
     type: 'varchar',

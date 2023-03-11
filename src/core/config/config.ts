@@ -56,17 +56,11 @@ export class Config {
   }
 
   get keyPem(): string {
-    return readFileSync(
-      resolve(__dirname,'..keys/key.pem'),
-      'utf-8',
-    )
+    return readFileSync(resolve(__dirname, '../'.repeat(4), 'keys/key.pem'), 'utf-8');
   }
 
   get keyPub(): string {
-    return readFileSync(
-      resolve(__dirname,'..keys/key.pub'),
-      'utf-8',
-    )
+    return readFileSync(resolve(__dirname, '../'.repeat(4), 'keys/key.pub'), 'utf-8');
   }
 
   get isDevelopment(): boolean {

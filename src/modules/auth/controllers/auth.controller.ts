@@ -1,39 +1,35 @@
-import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { AuthService } from '@modules/auth/services';
-import { Role } from '@shared/user/role.enum';
-import { HasRoles } from '@shared/user/decorators/has-roles.decorator';
-import { RolesGuard } from '@shared/user/guards/roles.guard';
-import { LocalAuthGuard } from '@shared/user/guards/local-auth.guard';
-import { JwtAuthGuard } from '@shared/user/guards/jwt-auth.guard';
+import { Body, Controller, Delete, Get, Post, Put, Request } from '@nestjs/common';
 
+import { IsAuthenticated } from '@shared/user';
+
+import { AuthService } from '../services';
 @Controller()
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly _authService: AuthService) {}
 
-  @UseGuards(LocalAuthGuard)
   @Post('auth/login')
-  async login(@Request() req) {
-    return this.authService.login(req.user);
+  async login(@Body() { email, password }: any) {
+    return this._authService.login(email, password);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @IsAuthenticated()
   @Get('profile')
-  getProfile(@Request() req) {
+  getProfile(@Request() req: any) {
     return req.user;
   }
 
-  @HasRoles(Role.Admin)
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Get('admin')
-  onlyAdmin(@Request() req) {
-    return req.user;
+  @Post('register')
+  async register(@Body() user: any) {
+    return this._authService.createUser(user);
   }
 
-  @HasRoles(Role.User)
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Get('user')
-  onlyUser(@Request() req) {
-    return req.user;
+  @Delete('remove')
+  async remove(@Body() user: any) {
+    return this._authService.removeUser(user);
+  }
+
+  @Put('update')
+  async update(@Body() user: any) {
+    return this._authService.updateUser(user);
   }
 }
