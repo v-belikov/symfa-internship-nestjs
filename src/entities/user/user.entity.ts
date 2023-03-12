@@ -1,5 +1,6 @@
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+import { Config } from '../../core/config/config';
 import { BaseEntity } from '../common';
 
 import { hash } from 'bcrypt';
@@ -20,6 +21,6 @@ export class UserEntity extends BaseEntity {
 
   @BeforeInsert()
   async hashPassword() {
-    this.password = await hash(this.password, 7);
+    this.password = await hash(this.password, Config.get.hashKeyForBcrypt);
   }
 }

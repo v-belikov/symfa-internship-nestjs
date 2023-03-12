@@ -78,8 +78,12 @@ export class Config {
     };
   }
 
-  get hashKey(): string {
+  get hashKeyForJwtToken(): string {
     return this._env.HASH_SALT;
+  }
+
+  get hashKeyForBcrypt(): number {
+    return Number(this._env.saltForBcrypt);
   }
 
   get hashPrivateKey(): string {

@@ -48,6 +48,10 @@ export class AuthService {
     return await this._usersRepository.save(newUser);
   }
 
+  findById(id: any): Promise<UserEntity> {
+    return this._usersRepository.findOne(id);
+  }
+
   generateJwt(user: UserEntity): string {
     return this._jwtService.sign({
       id: user.id,

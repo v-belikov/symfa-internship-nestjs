@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UsePipes, ValidationPipe } from '@nestjs/common';
 
 import { UserEntity } from '@entities/user';
-import { CreateUserDto, LoginUserDto } from '@modules/users';
+import { CreateUserDto, IUserRequest, LoginUserDto } from '@modules/users';
 
 import { AuthService } from '../services/auth.service';
 
@@ -28,5 +28,12 @@ export class AuthController {
     const user = await this._authService.login(loginUserDto);
 
     return this._authService.buildUserResponse(user);
+  }
+
+  @Get('user')
+  async currentUser(@Req() request: any): Promise<IUserRequest> {
+    console.log(request.user);
+
+    return this._authService.buildUserResponse(request.user);
   }
 }
