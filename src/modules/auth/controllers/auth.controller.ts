@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Request, UseGuards } from '@nestjs/common';
 
 import { AuthService } from '@modules/auth/services';
 import { CreateUserDto } from '@shared/user';
@@ -23,5 +23,15 @@ export class AuthController {
   @Get('profile')
   getProfile(@Request() req: any) {
     return req.user;
+  }
+
+  @Put('update')
+  async update(@Body() user: any) {
+    return this._authService.updateUser(user);
+  }
+
+  @Delete('delete')
+  async delete(@Body() user: any) {
+    return this._authService.deleteUser(user);
   }
 }

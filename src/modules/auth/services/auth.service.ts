@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Body, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -83,5 +83,13 @@ export class AuthService {
     const token = await this.generateJwtToken(dto.email);
 
     return { ...existUser, token };
+  }
+
+  async updateUser(@Body() user: any) {
+    return this._usersService.updateUser(user);
+  }
+
+  async deleteUser(@Body() user: any) {
+    return this._usersService.deleteUser(user);
   }
 }

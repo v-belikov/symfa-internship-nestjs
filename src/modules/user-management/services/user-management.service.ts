@@ -1,20 +1,23 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { UserEntity } from '@entities/users';
-import { UpdateUserDto } from '@modules/user-management/models';
+import { UsersService } from '@shared/user';
 
 @Injectable()
 export class UserManagementService {
   constructor(
+    private _usersService: UsersService,
     @InjectRepository(UserEntity)
     private readonly _userRepository: Repository<UserEntity>,
   ) {}
 
-  async updateUser(email: string, dto: UpdateUserDto): Promise<UpdateUserDto> {
-    await this._userRepository.update({ email }, dto);
+  async updateUser(@Body() user: any) {
+    return this._usersService.updateUser(user);
+  }
 
-    return dto;
+  async deleteUser(@Body() user: any) {
+    return this._usersService.deleteUser(user);
   }
 }
