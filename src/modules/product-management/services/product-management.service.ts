@@ -15,10 +15,6 @@ export class ProductManagementService {
     private readonly _productsRepository: Repository<ProductEntity>,
   ) {}
 
-  async deleteProduct(product: any) {
-    return this._productsService.deleteProduct(product.id);
-  }
-
   async updateProduct({ ...product }: UpdateProductDto) {
     const productForUpdating = await this._productsService.getProductById(product.id);
 
