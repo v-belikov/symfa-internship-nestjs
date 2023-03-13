@@ -1,4 +1,4 @@
-import { ChildEntity, JoinColumn, ManyToOne } from 'typeorm';
+import { ChildEntity, ManyToOne } from 'typeorm';
 
 import { ProductEntity } from '@entities/products';
 import { ImageType } from '@models/enum';

@@ -8,7 +8,7 @@ import { UsersService } from '@shared/user';
 @Injectable()
 export class UserManagementService {
   constructor(
-    private _usersService: UsersService,
+    private readonly _usersService: UsersService,
     @InjectRepository(UserEntity)
     private readonly _userRepository: Repository<UserEntity>,
   ) {}
