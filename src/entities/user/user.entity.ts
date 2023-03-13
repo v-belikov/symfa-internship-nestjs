@@ -21,6 +21,7 @@ export class UserEntity extends BaseEntity {
 
   @BeforeInsert()
   async hashPassword() {
+    console.log(Config.get.hashKeyForBcrypt);
     this.password = await hash(this.password, Config.get.hashKeyForBcrypt);
   }
 }

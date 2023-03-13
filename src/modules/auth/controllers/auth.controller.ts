@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post, Req, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 
 import { UserEntity } from '@entities/user';
-import { CreateUserDto, IUserRequest, LoginUserDto } from '@modules/users';
+import { CreateUserDto, IUserResponse, LoginUserDto } from '@modules/users';
 
 import { AuthService } from '../services/auth.service';
 
@@ -14,26 +14,22 @@ export class AuthController {
     return this._authService.getAll();
   }
 
-  @Post('login/auth')
-  @UsePipes(new ValidationPipe())
-  async createUser(@Body('user') createUserDto: CreateUserDto): Promise<any> {
+  @Post('user')
+  async createUser(@Body('user') createUserDto: CreateUserDto): Promise<IUserResponse> {
     const user = await this._authService.createUser(createUserDto);
 
     return this._authService.buildUserResponse(user);
   }
 
-  @Post('login')
-  @UsePipes(new ValidationPipe())
-  async login(@Body('user') loginUserDto: LoginUserDto): Promise<UserEntity> {
+  @Post('users/login')
+  async login(@Body('user') loginUserDto: LoginUserDto): Promise<IUserResponse> {
     const user = await this._authService.login(loginUserDto);
 
     return this._authService.buildUserResponse(user);
   }
 
   @Get('user')
-  async currentUser(@Req() request: any): Promise<IUserRequest> {
-    console.log(request.user);
-
-    return this._authService.buildUserResponse(request.user);
+  async currentUser(@Req() request: any): Promise<IUserResponse> {
+    return this._authService.buildUserResponse(request.headers);
   }
 }

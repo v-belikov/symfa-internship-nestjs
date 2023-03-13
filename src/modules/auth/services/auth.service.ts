@@ -3,9 +3,9 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+import { Config } from '@core/config';
 import { UserEntity } from '@entities/user';
-import { CreateUserDto } from '@modules/users';
-import { UsersService } from '@modules/users/services';
+import { CreateUserDto, IUserResponse } from '@modules/users';
 
 import { LoginUserDto } from '../../users/login-user.dto';
 
@@ -14,31 +14,22 @@ import { compare } from 'bcrypt';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly _usersService: UsersService,
     private readonly _jwtService: JwtService,
     @InjectRepository(UserEntity)
     private readonly _usersRepository: Repository<UserEntity>,
   ) {}
 
-  async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this._usersService.findOne(username);
-
-    if (user && user.password === pass) {
-      const { password, ...result } = user;
-
-      return result;
-    }
-
-    return null;
-  }
-
-  async createUser(createUserDto: CreateUserDto): Promise<any> {
+  async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
     const userByEmail = await this._usersRepository.findOneBy({
       email: createUserDto.email,
     });
 
-    if (userByEmail) {
-      throw new HttpException('email already has registrated', HttpStatus.UNPROCESSABLE_ENTITY);
+    const userByUsername = await this._usersRepository.findOneBy({
+      username: createUserDto.username,
+    });
+
+    if (userByEmail || userByUsername) {
+      throw new HttpException('email or name already has registrated', HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     const newUser = new UserEntity();
@@ -49,23 +40,17 @@ export class AuthService {
   }
 
   findById(id: any): Promise<UserEntity> {
-    return this._usersRepository.findOne(id);
-  }
-
-  generateJwt(user: UserEntity): string {
-    return this._jwtService.sign({
-      id: user.id,
-      username: user.username,
-      email: user.email,
-    });
+    return this._usersRepository.findOneBy(id);
   }
 
   async login(loginUserDto: LoginUserDto): Promise<UserEntity> {
-    const user = await this._usersRepository.findOneBy({
-      email: loginUserDto.email,
-    });
+    const user = await this._usersRepository
+      .createQueryBuilder('user')
+      .select(['user.id', 'user.username', 'user.email', 'user.password'])
+      .where('user.email = :email', { email: loginUserDto.email })
+      .getOne();
 
-    console.log(user);
+    console.log('user: ' + user);
 
     if (!user) {
       throw new HttpException(`user doesn't exist`, HttpStatus.UNPROCESSABLE_ENTITY);
@@ -74,13 +59,28 @@ export class AuthService {
     const isPasswordCorrect = await compare(loginUserDto.password, user.password);
 
     if (!isPasswordCorrect) {
-      throw new HttpException('password in not corrected', HttpStatus.UNPROCESSABLE_ENTITY);
+      throw new HttpException('password in not correct', HttpStatus.UNPROCESSABLE_ENTITY);
     }
+
+    delete user.password;
 
     return user;
   }
 
-  buildUserResponse(user: UserEntity): any {
+  generateJwt(user: UserEntity): string {
+    console.log(user);
+
+    return this._jwtService.sign(
+      {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+      },
+      { secret: Config.get.hashKeyForJwtToken },
+    );
+  }
+
+  buildUserResponse(user: UserEntity): IUserResponse {
     return {
       user: { ...user, token: this.generateJwt(user) },
     };

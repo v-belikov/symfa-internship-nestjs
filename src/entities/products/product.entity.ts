@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 
 import { Size } from '@models/enum';
 
@@ -36,7 +36,6 @@ export class ProductEntity extends BaseEntity {
   style: string;
 
   @OneToMany(() => ImageCart, (image: ImageCart) => image.product)
-  @JoinColumn()
   imageCart: ImageCart;
 
   @OneToMany(() => ImagePreview, (image: ImagePreview) => image.product)

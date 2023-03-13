@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { RequestMethod } from '@nestjs/common/enums';
-import { MiddlewareConsumer } from '@nestjs/common/interfaces';
+// import { RequestMethod } from '@nestjs/common/enums';
+// import { MiddlewareConsumer } from '@nestjs/common/interfaces';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -10,7 +10,6 @@ import { UserEntity } from '../../entities/user/user.entity';
 import { UsersModule } from '../users/users.module';
 import { AuthController } from './controllers/auth.controller';
 import { AuthService } from './services/auth.service';
-import { AuthMiddleware } from './auth.middleware';
 import { JwtStrategy } from './jwt.strategy';
 
 @Module({
@@ -22,11 +21,4 @@ import { JwtStrategy } from './jwt.strategy';
   providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
 })
-export class AuthModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes({
-      path: '*',
-      method: RequestMethod.ALL,
-    });
-  }
-}
+export class AuthModule {}
