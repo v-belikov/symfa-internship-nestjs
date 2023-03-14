@@ -3,10 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { ImagePreview } from '@entities/images';
-import {
-  ApiGetImagePreviewModel,
-  UploadImageDto,
-} from '@modules/images/models';
+
+import { ApiGetImagePreviewModel, UploadImageDto } from '../models';
 
 @Injectable()
 export class ImagePreviewService {

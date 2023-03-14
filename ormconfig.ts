@@ -10,6 +10,7 @@ if (!existsSync(folder)) {
   mkdirSync(folder);
 }
 
+
 const migrations = readdirSync(folder).reduce(
   (acc: FunctionConstructor[], migration: string) => {
     acc.push(

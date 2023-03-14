@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { config } from 'dotenv';
-import { existsSync } from 'fs';
-import { join } from 'path';
+import { existsSync, readFileSync } from 'fs';
+import { join, resolve } from 'path';
 import { DataSourceOptions } from 'typeorm';
 
 import { ENTITIES, SUBSCRIBERS } from '@entities/index';
@@ -49,6 +49,18 @@ export class Config {
 
   get environment(): EnvironmentType {
     return this._env.NODE_ENV as EnvironmentType;
+  }
+
+  get hashSalt(): string {
+    return this._env.HASH_SALT;
+  }
+
+  get keyPem(): string {
+    return readFileSync(resolve(__dirname, '../'.repeat(4), 'keys/key.pem'), 'utf-8');
+  }
+
+  get keyPub(): string {
+    return readFileSync(resolve(__dirname, '../'.repeat(4), 'keys/key.pub'), 'utf-8');
   }
 
   get isDevelopment(): boolean {
