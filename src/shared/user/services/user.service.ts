@@ -40,6 +40,20 @@ export class UserService {
     throw new BadRequestException('Wrong email');
   }
 
+  async findOneById(id: string): Promise<User | undefined> {
+    const user = await this._usersRepository
+      .createQueryBuilder('user')
+      .select(['user.id', 'user.username', 'user.email', 'user.password'])
+      .where('user.id = :id', { id })
+      .getOne();
+
+    if (user) {
+      return user;
+    }
+
+    throw new BadRequestException('Wrong email');
+  }
+
   async create({ password: plainPassword, ...userData }: AuthUserDto) {
     try {
       const password = await bcrypt.hash(plainPassword, +Config.get.hashSalt);
@@ -50,6 +64,21 @@ export class UserService {
       delete user.password;
 
       return user;
+    } catch (erorr) {
+      throw new BadRequestException('user with that email already exists');
+    }
+  }
+
+  async createUserWithoutPass(userData: AuthUserDto) {
+    try {
+      const plainPassword = 'defaultPass';
+      const password = await bcrypt.hash(plainPassword, +Config.get.hashSalt);
+
+      const createdUser = await this._usersRepository.create({ ...userData, password });
+
+      await this._usersRepository.save(createdUser);
+
+      return createdUser;
     } catch (erorr) {
       throw new BadRequestException('user with that email already exists');
     }
@@ -70,6 +99,28 @@ export class UserService {
     await this._usersRepository.save(updatedUser);
 
     return updatedUser;
+  }
+
+  async updateUserWithoutPass(userData: AuthUserDto) {
+    const updatedUser = await this.findOneById(userData.id);
+    const plainPassword = 'defaultPass';
+
+    const password = await bcrypt.hash(plainPassword, +Config.get.hashSalt);
+
+    updatedUser.password = password;
+    updatedUser.username = userData.username;
+    updatedUser.email = userData.email;
+    await this._usersRepository.save(updatedUser);
+
+    return updatedUser;
+  }
+
+  async getUsers() {
+    const queryBuilder = this._usersRepository
+      .createQueryBuilder('user')
+      .select(['user.id', 'user.username', 'user.email', 'user.password']);
+
+    return queryBuilder.getMany();
   }
 
   //для хэширования пароля

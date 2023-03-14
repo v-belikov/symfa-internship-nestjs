@@ -20,6 +20,8 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() user: any) {
+    console.log(user);
+
     return this._authService.createUser(user);
   }
 
@@ -31,5 +33,10 @@ export class AuthController {
   @Put('update')
   async update(@Body() user: any) {
     return this._authService.updateUser(user);
+  }
+
+  @Get('users')
+  getProducts() {
+    return this._authService.getUsers();
   }
 }

@@ -11,6 +11,7 @@ export class AuthService {
   async login(email: string, plainTextPassword: string) {
     const user = await this._userService.getAuthenticatedUser(email, plainTextPassword);
     const payload = {
+      username: user.username,
       email: user.email,
       sub: user.id,
     };
@@ -21,7 +22,7 @@ export class AuthService {
   }
 
   async createUser(user: AuthUserDto) {
-    return this._userService.create(user);
+    return this._userService.createUserWithoutPass(user);
   }
 
   async removeUser(user: AuthUserDto) {
@@ -29,6 +30,10 @@ export class AuthService {
   }
 
   async updateUser(user: AuthUserDto) {
-    return this._userService.update(user);
+    return this._userService.updateUserWithoutPass(user);
+  }
+
+  async getUsers() {
+    return this._userService.getUsers();
   }
 }
