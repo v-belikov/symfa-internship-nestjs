@@ -9,7 +9,6 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // TODO make and use your own validation pipe
   app
     .useGlobalPipes(new ValidationPipe())
     // TODO setup cors for client url (use Config.get.clientURL)

@@ -58,9 +58,7 @@ export abstract class AbstractLoader<T extends object> {
     this._logger.verbose('Successfully loaded.');
   }
 
-  protected async filterExistRecords(
-    repository: Repository<T>,
-  ): Promise<(T | Partial<T> | DeepPartial<T>)[]> {
+  protected async filterExistRecords(repository: Repository<T>): Promise<(T | Partial<T> | DeepPartial<T>)[]> {
     const { DBValues } = await repository
       .createQueryBuilder('repository')
       .select('array_agg(repository.id)', 'DBValues')
@@ -69,13 +67,8 @@ export abstract class AbstractLoader<T extends object> {
     return this.data.filter((v: T) => !DBValues?.includes(v?.['id']));
   }
 
-  protected async defaultExecute(
-    repository: Repository<T>,
-    isUpdate: boolean,
-  ): Promise<void> {
-    const data = isUpdate
-      ? await this.filterExistRecords(repository)
-      : this.data;
+  protected async defaultExecute(repository: Repository<T>, isUpdate: boolean): Promise<void> {
+    const data = isUpdate ? await this.filterExistRecords(repository) : this.data;
 
     for (const item of data) {
       try {
@@ -86,25 +79,17 @@ export abstract class AbstractLoader<T extends object> {
     }
   }
 
-  protected async executeWithRelations(
-    repository: Repository<T>,
-    isUpdate: boolean,
-  ): Promise<void> {
-    const data = isUpdate
-      ? await this.filterExistRecords(repository)
-      : this.data;
+  protected async executeWithRelations(repository: Repository<T>, isUpdate: boolean): Promise<void> {
+    const data = isUpdate ? await this.filterExistRecords(repository) : this.data;
 
     for (const item of data) {
       const createdRelativeEntities: IRelationEntity[] = [];
 
       for (const { relativeEntity, relationKey } of this.relations) {
-        const relativeRepository =
-          this.entityManager.getRepository(relativeEntity);
+        const relativeRepository = this.entityManager.getRepository(relativeEntity);
 
         const relativeEntities = Array.isArray(item[relationKey])
-          ? item[relationKey].map((r: DeepPartial<any>) =>
-              relativeRepository.create(r),
-            )
+          ? item[relationKey].map((r: DeepPartial<any>) => relativeRepository.create(r))
           : relativeRepository.create(item[relationKey]);
 
         createdRelativeEntities.push({
@@ -116,9 +101,7 @@ export abstract class AbstractLoader<T extends object> {
 
       const data = { ...(item as T) } as DeepPartial<T>;
 
-      createdRelativeEntities.forEach(
-        (e: IRelationEntity) => (data[e.relationKey] = e.relativeEntities),
-      );
+      createdRelativeEntities.forEach((e: IRelationEntity) => (data[e.relationKey] = e.relativeEntities));
 
       const createdMainEntity = repository.create(data);
 
