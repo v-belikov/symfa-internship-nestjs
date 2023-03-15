@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Put } from '@nestjs/common';
 
 import { UserManagementService } from '@modules/user-management/services';
 
@@ -14,5 +14,10 @@ export class UserManagementController {
   @Delete('delete')
   async delete(@Body() user: any) {
     return this._userManagementService.deleteUser(user);
+  }
+
+  @Get('all')
+  async getAllUsers() {
+    return this._userManagementService.getAllUsers();
   }
 }

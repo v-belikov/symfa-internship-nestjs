@@ -2,13 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { Config } from '@core/config';
 import { UserEntity } from '@entities/users';
 import { CreateUserDto } from '@shared/user';
 
 import { IUser } from '../user.interface';
-
-import * as bcrypt from 'bcrypt';
 
 export type User = IUser;
 
@@ -27,6 +24,10 @@ export class UsersService {
     return this._userRepository.findOne({ where: { email } });
   }
 
+  async findOneByID(id: string) {
+    return this._userRepository.findOne({ where: { id } });
+  }
+
   async deleteUser(user: any) {
     const userForDeleting = await this.findOneByEmail(user.email);
 
@@ -34,10 +35,12 @@ export class UsersService {
   }
 
   async updateUser({ ...user }: CreateUserDto) {
-    const userForUpdating = await this.findOneByEmail(user.email);
+    const userForUpdating = await this.findOneByID(user.id);
 
-    userForUpdating.password = await bcrypt.hash(user.password, Config.get.hashSalt);
+    console.log(userForUpdating);
+
     userForUpdating.username = user.username;
+    userForUpdating.email = user.email;
 
     await this._userRepository.save(userForUpdating);
 

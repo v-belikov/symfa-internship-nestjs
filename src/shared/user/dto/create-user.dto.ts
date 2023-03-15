@@ -3,6 +3,10 @@ import { IsEmail, IsString, Length } from 'class-validator';
 
 export class CreateUserDto {
   @ApiProperty()
+  @IsString()
+  id: string;
+
+  @ApiProperty()
   @Length(3, 32, { message: 'Username min length 3 symbols' })
   username: string;
 

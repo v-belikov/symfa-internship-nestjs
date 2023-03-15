@@ -20,4 +20,12 @@ export class UserManagementService {
   async deleteUser(@Body() user: any) {
     return this._usersService.deleteUser(user);
   }
+
+  async getAllUsers() {
+    const queryBuilder = this._userRepository
+      .createQueryBuilder('user')
+      .select(['user.id', 'user.username', 'user.email']);
+
+    return queryBuilder.getMany();
+  }
 }
